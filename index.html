@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Валентинка</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+        h1 {
+            color: #ff66b2;
+            margin-top: 50px;
+        }
+        .container {
+            position: relative;
+            margin-top: 100px;
+        }
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: #ff66b2;
+            clip-path: polygon(50% 0%, 100% 35%, 80% 100%, 50% 80%, 20% 100%, 0% 35%);
+            animation: floatUp 5s infinite ease-in-out;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+        #surprise-btn {
+            background: linear-gradient(45deg, #ff66b2, #a000c4);
+            color: white;
+            font-size: 20px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: 0.3s;
+        }
+        #surprise-btn:hover {
+            background: linear-gradient(45deg, #a000c4, #ff66b2);
+            transform: scale(1.1);
+        }
+        #love-message {
+            display: none;
+            font-size: 30px;
+            color: #ff66b2;
+            margin-top: 20px;
+        }
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>С Днём Святого Валентина!</h1>
+    <p>Ты – самое прекрасное, что есть в моей жизни! ❤️</p>
+    
+    <button id="surprise-btn">Сюрприз</button>
+    <p id="love-message">Очень сильно тебя люблю! ❤️</p>
+
+    <audio autoplay loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        <!-- Генерация сердечек -->
+        <script>
+            function createHeart() {
+                const heart = document.createElement("div");
+                heart.classList.add("heart");
+                document.body.appendChild(heart);
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+                setTimeout(() => { heart.remove(); }, 5000);
+            }
+            setInterval(createHeart, 300);
+
+            document.getElementById("surprise-btn").addEventListener("click", function() {
+                document.getElementById("love-message").style.display = "block";
+            });
+        </script>
+    </div>
+</body>
+</html>
